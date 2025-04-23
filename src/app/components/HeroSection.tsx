@@ -11,6 +11,8 @@ export default function HeroSection() {
   const [isMobile, setIsMobile] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [contactType, setContactType] = useState<HeroContentKey>("default");
   const router = useRouter();
 
   useEffect(() => {
@@ -81,6 +83,10 @@ export default function HeroSection() {
 
     setActiveImage(type);
 
+    setContactType(type);
+
+    setShowContactForm(true);
+
     if (!heroContent[type].enabled) {
       console.log(`La page ${heroContent[type].path} n'est pas encore disponible`);
 
@@ -143,6 +149,40 @@ export default function HeroSection() {
           </button>
         </div>
       </div>
+      {showContactForm && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold">{contactType === "construire" ? "Construire avec nous" : "Agrandir votre espace"}</h3>
+              <button onClick={() => setShowContactForm(false)} className="text-gray-500 hover:text-black">
+                ✕
+              </button>
+            </div>
+
+            <form className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">Nom</label>
+                <input type="text" className="w-full border border-gray-300 rounded px-3 py-2" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Email</label>
+                <input type="email" className="w-full border border-gray-300 rounded px-3 py-2" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Téléphone</label>
+                <input type="tel" className="w-full border border-gray-300 rounded px-3 py-2" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1">Message</label>
+                <textarea className="w-full border border-gray-300 rounded px-3 py-2 h-24"></textarea>
+              </div>
+              <button type="submit" className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">
+                Envoyer
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
