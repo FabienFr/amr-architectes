@@ -88,7 +88,9 @@ export default function HeroSection() {
     setShowContactForm(true);
 
     if (!heroContent[type].enabled) {
-      console.log(`La page ${heroContent[type].path} n'est pas encore disponible`);
+      console.log(
+        `La page ${heroContent[type].path} n'est pas encore disponible`,
+      );
 
       setTimeout(() => {
         setIsButtonClicked(false);
@@ -107,25 +109,56 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center bg-white text-black px-6">
-      <Link href="/" className={`absolute z-20 top-3 left-3 no-underline transition-colors duration-500 ${currentContent.textColor}`}>
+      <Link
+        href="/"
+        className={`absolute z-20 top-3 left-3 no-underline transition-colors duration-500 ${currentContent.textColor}`}
+      >
         <div>
-          <h3 className="font-extrabold text-xl tracking-wide uppercase font-archivo">AMR</h3>
-          <h3 className="font-extrabold text-xl tracking-wide uppercase font-archivo">ARCHITECTES</h3>
+          <h3 className="font-extrabold text-xl tracking-wide uppercase font-archivo">
+            AMR
+          </h3>
+          <h3 className="font-extrabold text-xl tracking-wide uppercase font-archivo">
+            ARCHITECTES
+          </h3>
         </div>
       </Link>
 
       <div className="absolute inset-0 w-full h-full">
-        <div className={`absolute inset-0 transition-opacity duration-000 ease-in-out ${activeImage === "default" ? "opacity-100" : "opacity-0"}`}>
-          <Image src={heroContent.default.image} alt="Image par défaut" className="object-cover w-full h-full" fill priority />
+        <div
+          className={`absolute inset-0 transition-opacity duration-000 ease-in-out ${activeImage === "default" ? "opacity-100" : "opacity-0"}`}
+        >
+          <Image
+            src={heroContent.default.image}
+            alt="Image par défaut"
+            className="object-cover w-full h-full"
+            fill
+            priority
+          />
         </div>
 
-        <div className={`absolute inset-0 transition-opacity duration-900 ease-in-out ${activeImage === "construire" ? "opacity-100" : "opacity-0"}`}>
-          <Image src={heroContent.construire.image} alt="Construire" className="object-cover w-full h-full" fill priority={false} />
+        <div
+          className={`absolute inset-0 transition-opacity duration-900 ease-in-out ${activeImage === "construire" ? "opacity-100" : "opacity-0"}`}
+        >
+          <Image
+            src={heroContent.construire.image}
+            alt="Construire"
+            className="object-cover w-full h-full"
+            fill
+            priority={false}
+          />
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
 
-        <div className={`absolute inset-0 transition-opacity duration-900 ease-in-out ${activeImage === "agrandir" ? "opacity-100" : "opacity-0"}`}>
-          <Image src={heroContent.agrandir.image} alt="Agrandir" className="object-cover w-full h-full" fill priority={false} />
+        <div
+          className={`absolute inset-0 transition-opacity duration-900 ease-in-out ${activeImage === "agrandir" ? "opacity-100" : "opacity-0"}`}
+        >
+          <Image
+            src={heroContent.agrandir.image}
+            alt="Agrandir"
+            className="object-cover w-full h-full"
+            fill
+            priority={false}
+          />
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
       </div>
@@ -133,18 +166,31 @@ export default function HeroSection() {
       <div className="relative z-10 text-center max-w-3xl">
         <div className="relative h-[250px] w-[300px] md:h-[400px] md:w-[550px] mb-6 overflow-hidden">
           {(Object.keys(heroContent) as HeroContentKey[]).map((key) => (
-            <h1 key={key} className={`font-norwester text-5xl md:text-7xl font-extrabold leading-tight tracking-wider absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${activeImage === key ? "opacity-100" : "opacity-0"} ${heroContent[key].textColor}`}>
+            <h1
+              key={key}
+              className={`font-norwester text-5xl md:text-7xl font-extrabold leading-tight tracking-wider absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${activeImage === key ? "opacity-100" : "opacity-0"} ${heroContent[key].textColor}`}
+            >
               {heroContent[key].title}
             </h1>
           ))}
         </div>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button className="bg-white/60 text-black border-black border-2 hover:bg-gray-200 transition px-8 py-4 w-full sm:w-40 rounded-lg text-lg font-semibold" onMouseEnter={() => handleMouseEnter("construire")} onMouseLeave={handleMouseLeave} onClick={() => handleButtonClick("construire")}>
+          <button
+            className="bg-white/60 text-black border-black border-2 hover:bg-gray-200 transition px-8 py-4 w-full sm:w-40 rounded-lg text-lg font-semibold"
+            onMouseEnter={() => handleMouseEnter("construire")}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => handleButtonClick("construire")}
+          >
             Construire
           </button>
 
-          <button className="bg-white/60 text-black border-black border-2 hover:bg-gray-200 transition px-8 py-4 w-full sm:w-40 rounded-lg text-lg font-semibold" onMouseEnter={() => handleMouseEnter("agrandir")} onMouseLeave={handleMouseLeave} onClick={() => handleButtonClick("agrandir")}>
+          <button
+            className="bg-white/60 text-black border-black border-2 hover:bg-gray-200 transition px-8 py-4 w-full sm:w-40 rounded-lg text-lg font-semibold"
+            onMouseEnter={() => handleMouseEnter("agrandir")}
+            onMouseLeave={handleMouseLeave}
+            onClick={() => handleButtonClick("agrandir")}
+          >
             Agrandir
           </button>
         </div>
@@ -153,8 +199,15 @@ export default function HeroSection() {
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-lg p-6 max-w-md w-full">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold">{contactType === "construire" ? "Construire avec nous" : "Agrandir votre espace"}</h3>
-              <button onClick={() => setShowContactForm(false)} className="text-gray-500 hover:text-black">
+              <h3 className="text-xl font-bold">
+                {contactType === "construire"
+                  ? "Construire avec nous"
+                  : "Agrandir votre espace"}
+              </h3>
+              <button
+                onClick={() => setShowContactForm(false)}
+                className="text-gray-500 hover:text-black"
+              >
                 ✕
               </button>
             </div>
@@ -162,21 +215,37 @@ export default function HeroSection() {
             <form className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">Nom</label>
-                <input type="text" className="w-full border border-gray-300 rounded px-3 py-2" />
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-1">Email</label>
-                <input type="email" className="w-full border border-gray-300 rounded px-3 py-2" />
+                <input
+                  type="email"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Téléphone</label>
-                <input type="tel" className="w-full border border-gray-300 rounded px-3 py-2" />
+                <label className="block text-sm font-medium mb-1">
+                  Téléphone
+                </label>
+                <input
+                  type="tel"
+                  className="w-full border border-gray-300 rounded px-3 py-2"
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1">Message</label>
+                <label className="block text-sm font-medium mb-1">
+                  Message
+                </label>
                 <textarea className="w-full border border-gray-300 rounded px-3 py-2 h-24"></textarea>
               </div>
-              <button type="submit" className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">
+              <button
+                type="submit"
+                className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition"
+              >
                 Envoyer
               </button>
             </form>

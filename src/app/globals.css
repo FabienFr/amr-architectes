@@ -3,6 +3,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --gold-from: #FFD700;
+  --gold-via: #FFC300;
+  --gold-to: #DAA520;
 }
 
 @theme inline {
@@ -16,6 +19,13 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r;
+    background-image: linear-gradient(to right, var(--gold-from), var(--gold-via), var(--gold-to));
   }
 }
 

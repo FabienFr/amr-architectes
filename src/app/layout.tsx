@@ -31,7 +31,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${norwester.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${norwester.variable} antialiased`}
+      >
         {children}
         <ContactButton />
       </body>
