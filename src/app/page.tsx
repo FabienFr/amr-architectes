@@ -11,10 +11,6 @@ import FooterSection from "./components/FooterSection";
 import GallerySection from "./components/GallerySection";
 export default function Page() {
   return (
-    // Note: Next.js App Router utilise <main> par défaut dans le layout racine.
-    // Envelopper dans un Fragment <>...</> est bien ici, car chaque section
-    // est sémantiquement indépendante. Si vous aviez un conteneur global
-    // pour la page, vous le mettriez ici ou dans le layout.
     <>
       <HeroSection />
       <ValuesSection />

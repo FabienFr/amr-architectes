@@ -1,11 +1,9 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
 
 export default function GallerySection() {
   const [activeFilter, setActiveFilter] = useState("all");
 
-  // Catégories de projets
   const categories = [
     { id: "all", name: "Tous les projets" },
     { id: "residential", name: "Résidentiel" },
@@ -14,7 +12,6 @@ export default function GallerySection() {
     { id: "extension", name: "Extension" },
   ];
 
-  // Projets avec leurs détails
   const projects = [
     {
       id: 1,
@@ -80,31 +77,38 @@ export default function GallerySection() {
       year: "2022",
       image: "/images/gallery/project8.jpg",
     },
-    // Ajoutez d'autres projets selon vos besoins
   ];
 
-  // Filtrer les projets selon la catégorie active
-  const filteredProjects = activeFilter === "all" ? projects : projects.filter((project) => project.category === activeFilter);
+  const filteredProjects =
+    activeFilter === "all"
+      ? projects
+      : projects.filter((project) => project.category === activeFilter);
 
   return (
     <section className="py-24 bg-white text-black px-6">
       <div className="max-w-7xl mx-auto">
-        <h2 className="font-norwester text-4xl md:text-5xl text-center mb-12">Nos Réalisations</h2>
+        <h2 className="font-norwester text-4xl md:text-5xl text-center mb-12">
+          Nos Réalisations
+        </h2>
 
-        {/* Filtres */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           {categories.map((category) => (
-            <button key={category.id} onClick={() => setActiveFilter(category.id)} className={`px-4 py-2 rounded-none transition-colors ${activeFilter === category.id ? "bg-white text-black" : "bg-transparent text-black border border-black hover:bg-black/10"}`}>
+            <button
+              key={category.id}
+              onClick={() => setActiveFilter(category.id)}
+              className={`px-4 py-2 rounded-none transition-colors ${activeFilter === category.id ? "bg-white text-black" : "bg-transparent text-black border border-black hover:bg-black/10"}`}
+            >
               {category.name}
             </button>
           ))}
         </div>
 
-        {/* Grille de projets */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredProjects.map((project) => (
-            <div key={project.id} className="group relative overflow-hidden aspect-square cursor-pointer">
-              {/* Image du projet */}
+            <div
+              key={project.id}
+              className="group relative overflow-hidden aspect-square cursor-pointer"
+            >
               <div className="absolute inset-0 bg-gray-800">
                 {/* Remplacer par vos vraies images quand disponibles */}
                 {/* <Image
@@ -116,13 +120,16 @@ export default function GallerySection() {
 
                 {/* Placeholder en attendant les vraies images */}
                 <div className="w-full h-full flex items-center justify-center bg-gray-700">
-                  <span className="text-sm text-gray-400">Image: {project.name}</span>
+                  <span className="text-sm text-gray-400">
+                    Image: {project.name}
+                  </span>
                 </div>
               </div>
 
-              {/* Overlay avec informations */}
               <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-end">
-                <h3 className="font-norwester text-xl text-white mb-1">{project.name}</h3>
+                <h3 className="font-norwester text-xl text-white mb-1">
+                  {project.name}
+                </h3>
                 <div className="flex justify-between text-sm text-gray-300">
                   <span>{project.location}</span>
                   <span>{project.year}</span>
