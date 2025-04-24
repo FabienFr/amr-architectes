@@ -35,58 +35,46 @@ export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError("");
+    setSubmitSuccess(false);
 
     try {
-      // Simuler un envoi de formulaire
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const form = new FormData();
+      form.append("name", formData.name);
+      form.append("email", formData.email);
+      form.append("phone", formData.phone || "");
+      form.append("message", formData.message);
 
-      console.log("Form submitted:", formData);
       if (file) {
-        console.log("File attached:", file.name);
+        form.append("file", file);
       }
 
-      // Réinitialiser le formulaire
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: form,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Erreur inconnue.");
+      }
+
+      // ✅ Succès
       setFormData({ name: "", email: "", phone: "", message: "" });
       setFile(null);
       setSubmitSuccess(true);
 
-      // Fermer la lightbox après un délai
       setTimeout(() => {
-        onSubmitSuccess();
+        onSubmitSuccess(); // fermeture de la lightbox
       }, 2000);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      const err = error instanceof Error ? error : new Error(String(error));
+      console.error("Erreur submit :", err);
       setSubmitError("Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  if (submitSuccess) {
-    return (
-      <div className="flex flex-col items-center justify-center py-8 text-center">
-        <div className="mb-4 rounded-full bg-green-100 p-3">
-          <svg
-            className="h-8 w-8 text-green-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-        <h3 className="mb-2 text-xl font-bold">Message envoyé !</h3>
-        <p className="text-gray-600">
-          Nous vous répondrons dans les plus brefs délais.
-        </p>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -195,10 +183,62 @@ export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg bg-black py-3 font-medium text-white transition-colors hover:bg-gray-800 disabled:bg-gray-400"
+        className="w-full rounded-lg bg-black py-3 font-medium text-white transition-colors hover:bg-gray-800 disabled:bg-gray-400 flex items-center justify-center gap-2"
       >
-        {isSubmitting ? "Envoi en cours..." : "Envoyer"}
+        {isSubmitting ? (
+          <>
+            <svg
+              className="h-5 w-5 animate-spin text-white"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+              />
+            </svg>
+            Envoi en cours...
+          </>
+        ) : (
+          "Envoyer"
+        )}
       </button>
+
+      {submitSuccess && (
+        <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in duration-700">
+          <div className="mb-4 rounded-full bg-green-100 p-3 animate-in zoom-in">
+            <svg
+              className="h-8 w-8 text-green-600 animate-in fade-in"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+          <h3 className="mb-2 text-xl font-bold text-green-700">
+            Message envoyé !
+          </h3>
+          <p className="text-gray-600">
+            Merci pour votre message. Nous vous répondrons dans les plus brefs
+            délais.
+          </p>
+        </div>
+      )}
     </form>
   );
 }
