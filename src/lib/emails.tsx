@@ -6,6 +6,7 @@ import ConfirmationEmail from "@/emails/ConfirmationEmail";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 interface SendContactEmailsOptions {
+  type: string;
   name: string;
   email: string;
   phone: string;

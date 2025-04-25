@@ -3,10 +3,14 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import { Paperclip } from "lucide-react";
 
 interface ContactFormProps {
+  type?: "contact" | "construire" | "agrandir";
   onSubmitSuccess: () => void;
 }
 
-export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
+export default function ContactForm({
+  onSubmitSuccess,
+  type = "contact",
+}: ContactFormProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,6 +43,7 @@ export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
 
     try {
       const form = new FormData();
+      form.append("type", type || "contact");
       form.append("name", formData.name);
       form.append("email", formData.email);
       form.append("phone", formData.phone || "");
@@ -79,6 +84,15 @@ export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
+        {type && (
+          <h2 className="font-norwester text-2xl font-bold text-center text-black">
+            {type === "construire"
+              ? "Construire avec nous"
+              : type === "agrandir"
+                ? "Agrandir votre espace"
+                : ""}
+          </h2>
+        )}
         <label
           htmlFor="name"
           className="mb-1 block text-sm font-medium text-gray-700"
@@ -92,7 +106,7 @@ export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
           value={formData.name}
           onChange={handleChange}
           required
-          className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-black focus:outline-none focus:ring-1 focus:ring-black text-black"
         />
       </div>
 
@@ -110,7 +124,7 @@ export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
           value={formData.email}
           onChange={handleChange}
           required
-          className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-black focus:outline-none focus:ring-1 focus:ring-black text-black"
         />
       </div>
 
@@ -127,7 +141,7 @@ export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-black focus:outline-none focus:ring-1 focus:ring-black text-black"
         />
       </div>
 
@@ -145,7 +159,7 @@ export default function ContactForm({ onSubmitSuccess }: ContactFormProps) {
           onChange={handleChange}
           required
           rows={4}
-          className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+          className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-black focus:outline-none focus:ring-1 focus:ring-black text-black"
         />
       </div>
 

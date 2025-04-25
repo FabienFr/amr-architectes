@@ -6,6 +6,7 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
 
+    const type = formData.get("type") as string;
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
     const phone = formData.get("phone") as string;
@@ -25,6 +26,7 @@ export async function POST(req: NextRequest) {
     }
 
     await sendContactEmails({
+      type,
       name,
       email,
       phone,
