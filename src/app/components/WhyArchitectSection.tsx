@@ -52,7 +52,7 @@ export default function WhyArchitectSection() {
   ];
 
   return (
-    <section className="py-24 bg-white text-black px-6">
+    <section className="py-24 bg-white/70 text-black px-6">
       <div className="max-w-5xl mx-auto">
         <div className="mb-12 text-center">
           <h2 className="font-norwester text-4xl md:text-5xl mb-6">

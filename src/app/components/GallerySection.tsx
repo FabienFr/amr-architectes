@@ -85,7 +85,7 @@ export default function GallerySection() {
       : projects.filter((project) => project.category === activeFilter);
 
   return (
-    <section className="py-24 bg-white text-black px-6">
+    <section className="py-24 bg-white/70 text-black px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="font-norwester text-4xl md:text-5xl text-center mb-12">
           Nos Réalisations
@@ -96,7 +96,7 @@ export default function GallerySection() {
             <button
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
-              className={`px-4 py-2 rounded-lg transition-colors ${activeFilter === category.id ? "bg-white text-black" : "bg-transparent text-black border border-black hover:bg-[#daa520]"}`}
+              className={`px-4 py-2 rounded-lg transition-colors ${activeFilter === category.id ? "bg-black text-white" : "bg-transparent text-black border border-black hover:bg-[#daa520]"}`}
             >
               {category.name}
             </button>

@@ -17,14 +17,14 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="pt-12 pb-24 bg-black text-black px-6">
+    <section className="pt-12 pb-24 bg-black/10 text-black px-6">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-4xl font-norwester font-extrabold mb-10 text-center text-gold-gradient">
           Happy Clients
         </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-gray-100 p-6 rounded-xl">
+            <div key={index} className="bg-white/80 p-6 rounded-xl">
               <p className="italic mb-4">&quot;{testimonial.quote}&quot;</p>
               <p className="font-bold">- {testimonial.name}</p>
             </div>

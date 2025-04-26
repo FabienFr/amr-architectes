@@ -25,7 +25,7 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="py-24 bg-black text-white px-6">
+    <section className="py-24 bg-black/10 text-white px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-norwester text-4xl md:text-5xl text-center mb-16 italic text-gold-gradient">
           UN ACCOMPAGNEMENT COMPLET, DE L&apos;IDÉE AU CHANTIER
@@ -48,7 +48,7 @@ export default function ProcessSection() {
                 <span className="absolute -bottom-1 left-0 w-1/3 h-px bg-[#FFD700]"></span>
               </h3>
 
-              <p className="text-gray-300 text-sm">{step.description}</p>
+              <p className="text-white text-sm">{step.description}</p>
             </div>
           ))}
         </div>
