@@ -12,7 +12,12 @@ export default function Loader() {
 
     // Setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      60,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
     camera.position.set(0, 0, 20);
 
     const renderer = new THREE.WebGLRenderer({
@@ -174,16 +179,27 @@ export default function Loader() {
   }, []);
 
   return (
-    <div ref={mountRef} className="fixed inset-0 z-50 flex items-center justify-center bg-black">
+    <div
+      ref={mountRef}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black"
+    >
       {/* Conteneur pour le texte - séparé de la barre de progression */}
       <div className="absolute bottom-28 left-0 right-0 mx-auto text-center">
-        <h3 className="text-amber-500 font-extrabold text-xl tracking-wide uppercase font-archivo">AMR</h3>
-        <h3 className="text-amber-500 font-extrabold text-xl tracking-wide uppercase font-archivo">ARCHITECTES</h3>
+        <h3 className="text-amber-500 font-extrabold text-xl tracking-wide uppercase font-archivo">
+          AMR
+        </h3>
+        <h3 className="text-amber-500 font-extrabold text-xl tracking-wide uppercase font-archivo">
+          ARCHITECTES
+        </h3>
       </div>
 
       {/* Barre de progression */}
       <div className="absolute bottom-20 left-0 right-0 mx-auto w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
-        <div ref={progressRef} className="h-full bg-amber-500 transition-all duration-300 ease-out" style={{ width: "0%" }} />
+        <div
+          ref={progressRef}
+          className="h-full bg-amber-500 transition-all duration-300 ease-out"
+          style={{ width: "0%" }}
+        />
       </div>
     </div>
   );
