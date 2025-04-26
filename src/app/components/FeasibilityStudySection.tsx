@@ -56,7 +56,7 @@ export default function FeasibilityStudySection() {
   ];
 
   return (
-    <section className="py-24 bg-black text-white px-6">
+    <section className="py-24 bg-black/10 text-white px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="font-norwester text-4xl md:text-5xl text-center mb-6 text-gold-gradient">
           COMMENCER UNE ÉTUDE DE FAISABILITÉ
@@ -73,9 +73,9 @@ export default function FeasibilityStudySection() {
           {feasibilityLevels.map((level, index) => (
             <div
               key={index}
-              className="border border-gray-800 bg-white overflow-hidden rounded-xl"
+              className="border border-gray-800 bg-white/90 overflow-hidden rounded-xl"
             >
-              <div className="bg-white text-black p-4 text-center">
+              <div className="bg-white/90 text-black p-4 text-center">
                 <h3 className="font-norwester text-2xl mb-1">{level.name}</h3>
                 <div className="text-xl font-bold">{level.price}</div>
               </div>
@@ -98,13 +98,13 @@ export default function FeasibilityStudySection() {
                   {level.description}
                 </p>
 
-                <h4 className="font-semibold mb-2 text-gold-gradient text-xl">
+                <h4 className="font-semibold mb-2 text-[#daa520] text-xl">
                   Inclus :
                 </h4>
                 <ul className="text-sm text-black space-y-1 mb-4">
                   {level.features.map((feature, i) => (
                     <li key={i} className="flex items-start">
-                      <span className="text-gold-gradient mr-2">✓</span>
+                      <span className="text-[#daa520] mr-2">✓</span>
                       {feature}
                     </li>
                   ))}

@@ -21,14 +21,14 @@ export default function CallToActionSection() {
   };
 
   return (
-    <section className="py-24 bg-white text-black text-center px-6">
+    <section className="py-24 bg-white/70 text-black text-center px-6">
       <div>
         <h2 className="text-4xl font-extrabold mb-12">
           Nos honoraires sont réintégrés dans le projet global !
         </h2>
         <button
           onClick={() => openLightbox("message")}
-          className="bg-white text-black border-black border-2 hover:bg-black hover:text-white transition px-8 py-4 rounded-xl text-lg font-semibold"
+          className="bg-white/30 text-black border-black border-2 hover:bg-black hover:text-white transition px-8 py-4 rounded-xl text-lg font-semibold"
         >
           Commencer mon projet
         </button>

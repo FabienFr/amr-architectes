@@ -4,6 +4,7 @@ import { useState } from "react";
 import { X, Calendar, MessageSquare } from "lucide-react";
 import CallBooking from "./CallBooking";
 import ContactForm from "./ContactForm";
+import BackgroundAnimation from "./BackgroundAnimation";
 
 export default function ValuesSection() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +42,8 @@ export default function ValuesSection() {
   };
 
   return (
-    <section className="py-24 bg-black text-white px-6">
+    <section className="values-section py-24 bg-black/10 text-white px-6">
+      <BackgroundAnimation />
       <div className="max-w-6xl mx-auto">
         <h2 className="font-norwester text-4xl md:text-5xl text-center mb-16">
           Bâtir malin, penser éco-conception.
@@ -68,7 +70,7 @@ export default function ValuesSection() {
                   {value.title}
                 </h3>
               </div>
-              <p className="text-gray-300 text-sm">{value.description}</p>
+              <p className="text-white text-sm">{value.description}</p>
             </div>
           ))}
         </div>
