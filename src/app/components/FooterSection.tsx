@@ -1,6 +1,6 @@
 export default function FooterSection() {
   return (
-    <footer className="py-12 bg-white text-black px-6">
+    <footer className="py-12 bg-white/70 text-black px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="text-center md:text-left space-y-2">
           <div>

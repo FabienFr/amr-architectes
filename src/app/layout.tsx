@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import ContactButton from "./components/ContactButton";
-
+import Loader from "./components/loader";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${norwester.variable} antialiased`}
       >
+        <Loader />
         {children}
         <ContactButton />
       </body>
