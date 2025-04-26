@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { X, Calendar, MessageSquare } from "lucide-react";
+import CallBooking from "./CallBooking";
 import ContactForm from "./ContactForm";
 
 export default function ContactButton() {
@@ -25,7 +26,7 @@ export default function ContactButton() {
       {/* Bouton flottant */}
       <button
         onClick={() => openLightbox("message")}
-        className="fixed bottom-6 right-6 z-40 flex h-16 w-16 items-center justify-center rounded-full bg-gray-500 text-gray-300 shadow-lg transition-all hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+        className="fixed bottom-6 right-6 z-40 flex h-16 w-16 items-center justify-center rounded-full bg-black text-white shadow-lg transition-all hover:bg-[#daa520] focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
         aria-label="Contactez-nous"
       >
         <MessageSquare className="h-6 w-6" />
@@ -81,24 +82,7 @@ export default function ContactButton() {
             </div>
 
             {formType === "call" ? (
-              <div className="text-center">
-                <p className="mb-4 flex items-center justify-center gap-2 text-lg font-medium text-black">
-                  <Calendar className="h-5 w-5" />
-                  30 min d&apos;échange gratuit avec Michaël, architecte
-                  fondateur
-                </p>
-                <p className="mb-6 text-gray-600">
-                  En visio ou à l&apos;agence à Biarritz
-                </p>
-                <a
-                  href="https://calendly.com/votre-lien"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block rounded-lg bg-black px-6 py-3 font-medium text-white transition-colors hover:bg-gray-800"
-                >
-                  Réserver un appel
-                </a>
-              </div>
+              <CallBooking />
             ) : (
               <ContactForm onSubmitSuccess={closeLightbox} />
             )}

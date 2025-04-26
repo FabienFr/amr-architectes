@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import ContactForm from "./ContactForm";
 
 type HeroContentKey = "default" | "construire" | "agrandir";
 
@@ -12,7 +14,9 @@ export default function HeroSection() {
   const [isNavigating, setIsNavigating] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
-  const [contactType, setContactType] = useState<HeroContentKey>("default");
+  const [contactType, setContactType] = useState<"construire" | "agrandir">(
+    "construire",
+  );
   const router = useRouter();
 
   useEffect(() => {
@@ -80,12 +84,13 @@ export default function HeroSection() {
     if (isNavigating) return;
 
     setIsButtonClicked(true);
-
     setActiveImage(type);
 
-    setContactType(type);
-
-    setShowContactForm(true);
+    if (type !== "default") {
+      setContactType(type as "construire" | "agrandir");
+      setShowContactForm(true);
+      return;
+    }
 
     if (!heroContent[type].enabled) {
       console.log(
@@ -105,6 +110,12 @@ export default function HeroSection() {
     setTimeout(() => {
       router.push(heroContent[type].path);
     }, 2000);
+  };
+
+  const handleCloseContactForm = () => {
+    setShowContactForm(false);
+    setIsButtonClicked(false);
+    setActiveImage("default");
   };
 
   return (
@@ -196,59 +207,19 @@ export default function HeroSection() {
         </div>
       </div>
       {showContactForm && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold">
-                {contactType === "construire"
-                  ? "Construire avec nous"
-                  : "Agrandir votre espace"}
-              </h3>
-              <button
-                onClick={() => setShowContactForm(false)}
-                className="text-gray-500 hover:text-black"
-              >
-                ✕
-              </button>
-            </div>
-
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium mb-1">Nom</label>
-                <input
-                  type="text"
-                  className="w-full border border-gray-300 rounded px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
-                <input
-                  type="email"
-                  className="w-full border border-gray-300 rounded px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  Téléphone
-                </label>
-                <input
-                  type="tel"
-                  className="w-full border border-gray-300 rounded px-3 py-2"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1">
-                  Message
-                </label>
-                <textarea className="w-full border border-gray-300 rounded px-3 py-2 h-24"></textarea>
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition"
-              >
-                Envoyer
-              </button>
-            </form>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="relative bg-white p-6 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={handleCloseContactForm}
+              className="absolute right-4 top-4 rounded-full p-1 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
+              aria-label="Fermer"
+            >
+              <X className="h-6 w-6" />
+            </button>
+            <ContactForm
+              type={contactType}
+              onSubmitSuccess={handleCloseContactForm}
+            />
           </div>
         </div>
       )}

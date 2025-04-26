@@ -96,7 +96,7 @@ export default function GallerySection() {
             <button
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
-              className={`px-4 py-2 rounded-none transition-colors ${activeFilter === category.id ? "bg-white text-black" : "bg-transparent text-black border border-black hover:bg-black/10"}`}
+              className={`px-4 py-2 rounded-lg transition-colors ${activeFilter === category.id ? "bg-white text-black" : "bg-transparent text-black border border-black hover:bg-[#daa520]"}`}
             >
               {category.name}
             </button>
