@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import ContactForm from "./ContactForm";
+import { motion } from "framer-motion";
 
 type HeroContentKey = "default" | "construire" | "agrandir";
 
@@ -14,9 +15,7 @@ export default function HeroSection() {
   const [isNavigating, setIsNavigating] = useState(false);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [showContactForm, setShowContactForm] = useState(false);
-  const [contactType, setContactType] = useState<"construire" | "agrandir">(
-    "construire",
-  );
+  const [contactType, setContactType] = useState<"construire" | "agrandir">("construire");
   const router = useRouter();
 
   useEffect(() => {
@@ -93,9 +92,7 @@ export default function HeroSection() {
     }
 
     if (!heroContent[type].enabled) {
-      console.log(
-        `La page ${heroContent[type].path} n'est pas encore disponible`,
-      );
+      console.log(`La page ${heroContent[type].path} n'est pas encore disponible`);
 
       setTimeout(() => {
         setIsButtonClicked(false);
@@ -120,56 +117,27 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-screen w-full flex items-center justify-center bg-white text-black text-gold-gradient px-6">
-      <Link
-        href="/"
-        className={`absolute z-20 top-3 left-3 no-underline transition-colors duration-500 ${currentContent.textColor}`}
-      >
-        <div>
-          <h3 className="font-extrabold text-xl tracking-wide uppercase font-archivo">
-            AMR
-          </h3>
-          <h3 className="font-extrabold text-xl tracking-wide uppercase font-archivo">
-            ARCHITECTES
-          </h3>
-        </div>
-      </Link>
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.6 }} className={`absolute z-20 top-3 left-3 no-underline transition-colors duration-500 ${currentContent.textColor}`}>
+        <Link href="/">
+          <div>
+            <h3 className="font-extrabold text-xl tracking-wide uppercase font-archivo">AMR</h3>
+            <h3 className="font-extrabold text-xl tracking-wide uppercase font-archivo">ARCHITECTES</h3>
+          </div>
+        </Link>
+      </motion.div>
 
       <div className="absolute inset-0 w-full h-full">
-        <div
-          className={`absolute inset-0 transition-opacity duration-000 ease-in-out ${activeImage === "default" ? "opacity-100" : "opacity-0"}`}
-        >
-          <Image
-            src={heroContent.default.image}
-            alt="Image par défaut"
-            className="object-cover w-full h-full"
-            fill
-            priority
-          />
+        <div className={`absolute inset-0 transition-opacity duration-000 ease-in-out ${activeImage === "default" ? "opacity-100" : "opacity-0"}`}>
+          <Image src={heroContent.default.image} alt="Image par défaut" className="object-cover w-full h-full" fill priority />
         </div>
 
-        <div
-          className={`absolute inset-0 transition-opacity duration-900 ease-in-out ${activeImage === "construire" ? "opacity-100" : "opacity-0"}`}
-        >
-          <Image
-            src={heroContent.construire.image}
-            alt="Construire"
-            className="object-cover w-full h-full"
-            fill
-            priority={false}
-          />
+        <div className={`absolute inset-0 transition-opacity duration-900 ease-in-out ${activeImage === "construire" ? "opacity-100" : "opacity-0"}`}>
+          <Image src={heroContent.construire.image} alt="Construire" className="object-cover w-full h-full" fill priority={false} />
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
 
-        <div
-          className={`absolute inset-0 transition-opacity duration-900 ease-in-out ${activeImage === "agrandir" ? "opacity-100" : "opacity-0"}`}
-        >
-          <Image
-            src={heroContent.agrandir.image}
-            alt="Agrandir"
-            className="object-cover w-full h-full"
-            fill
-            priority={false}
-          />
+        <div className={`absolute inset-0 transition-opacity duration-900 ease-in-out ${activeImage === "agrandir" ? "opacity-100" : "opacity-0"}`}>
+          <Image src={heroContent.agrandir.image} alt="Agrandir" className="object-cover w-full h-full" fill priority={false} />
           <div className="absolute inset-0 bg-black/30"></div>
         </div>
       </div>
@@ -177,51 +145,52 @@ export default function HeroSection() {
       <div className="relative z-10 text-center max-w-3xl">
         <div className="relative h-[250px] w-[300px] md:h-[400px] md:w-[550px] mb-6 overflow-hidden">
           {(Object.keys(heroContent) as HeroContentKey[]).map((key) => (
-            <h1
+            <motion.h1
               key={key}
-              className={`font-norwester text-5xl md:text-7xl font-extrabold leading-tight tracking-wider absolute inset-0 flex items-center justify-center transition-opacity duration-700 ${activeImage === key ? "opacity-100" : "opacity-0"} ${heroContent[key].textColor}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: activeImage === key ? 1 : 0, y: activeImage === key ? 0 : 30 }}
+              transition={{ duration: 0.7 }}
+              className={`font-norwester text-5xl md:text-7xl font-extrabold leading-tight tracking-wider absolute inset-0 flex items-center justify-center ${heroContent[key].textColor}`}
             >
               {heroContent[key].title}
-            </h1>
+            </motion.h1>
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button
+        <motion.div className="flex flex-col sm:flex-row justify-center gap-4" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }}>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
             className="bg-white/60 text-black border-black border-2 hover:bg-gray-200 transition px-8 py-4 w-full sm:w-40 rounded-lg text-lg font-semibold"
             onMouseEnter={() => handleMouseEnter("construire")}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleButtonClick("construire")}
           >
             Construire
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
             className="bg-white/60 text-black border-black border-2 hover:bg-gray-200 transition px-8 py-4 w-full sm:w-40 rounded-lg text-lg font-semibold"
             onMouseEnter={() => handleMouseEnter("agrandir")}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleButtonClick("agrandir")}
           >
             Agrandir
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
+
       {showContactForm && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="relative bg-white p-6 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
-            <button
-              onClick={handleCloseContactForm}
-              className="absolute right-4 top-4 rounded-full p-1 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-              aria-label="Fermer"
-            >
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", damping: 25 }} className="relative bg-white p-6 rounded-lg max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <button onClick={handleCloseContactForm} className="absolute right-4 top-4 rounded-full p-1 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700" aria-label="Fermer">
               <X className="h-6 w-6" />
             </button>
-            <ContactForm
-              type={contactType}
-              onSubmitSuccess={handleCloseContactForm}
-            />
-          </div>
-        </div>
+            <ContactForm type={contactType} onSubmitSuccess={handleCloseContactForm} />
+          </motion.div>
+        </motion.div>
       )}
     </section>
   );
