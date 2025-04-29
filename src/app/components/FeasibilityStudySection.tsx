@@ -4,15 +4,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 // Composant pour animer le texte lettre par lettre
-const AnimatedText = ({
-  text,
-  className,
-  delay = 0,
-}: {
-  text: string;
-  className: string;
-  delay?: number;
-}) => {
+const AnimatedText = ({ text, className, delay = 0 }: { text: string; className: string; delay?: number }) => {
   return (
     <motion.div className={className}>
       {text.split("").map((char, index) => (
@@ -38,57 +30,25 @@ export default function FeasibilityStudySection() {
 
   const feasibilityLevels = [
     {
-      name: "FAISA LEVEL I",
+      name: "Étude Préliminaire",
       price: "GRATUIT",
       description: "Premier entretien et analyse préliminaire de votre projet",
-      features: [
-        "Entretien & conseil initial",
-        "Visite de site",
-        "Analyse du PLU et des gabarits (orale)",
-        "Intégration environnementale",
-        "Estimation des surfaces créables",
-      ],
-      images: [
-        "/images/feasibility/level1-sketch.jpg",
-        "/images/feasibility/level1-planning.jpg",
-      ],
+      features: ["Entretien & conseil initial", "Visite de site", "Analyse du PLU et des gabarits (orale)", "Intégration environnementale", "Estimation des surfaces créables"],
+      images: ["/images/feasibility/level1-sketch.jpg", "/images/feasibility/level1-planning.jpg"],
     },
     {
-      name: "FAISA LEVEL II",
+      name: "Étude Avancée",
       price: "1000 €",
-      description:
-        "Étude approfondie avec options d'implantation et modélisation",
-      features: [
-        "Entretien & conseil initial",
-        "Visite de site",
-        "Analyse du PLU et des gabarits",
-        "Vérification du bâti existant",
-        "Relevé ou modélisation",
-        "Esquisse ou options d'implantation",
-        "Intégration environnementale",
-        "Estimation des surfaces créables",
-        "Dossier graphique PDF remis",
-      ],
-      images: [
-        "/images/feasibility/level2-model.jpg",
-        "/images/feasibility/level2-options.jpg",
-      ],
+      description: "Étude approfondie avec options d'implantation et modélisation",
+      features: ["Entretien & conseil initial", "Visite de site", "Analyse du PLU et des gabarits", "Vérification du bâti existant", "Relevé ou modélisation", "Esquisse ou options d'implantation", "Intégration environnementale", "Estimation des surfaces créables", "Dossier graphique PDF remis"],
+      images: ["/images/feasibility/level2-model.jpg", "/images/feasibility/level2-options.jpg"],
     },
     {
-      name: "FAISA LEVEL WINNER",
+      name: "Étude Urbanisme",
       price: "SUR DEVIS",
-      description:
-        "Une étude de faisabilité complète pour une présentation aux services de l'urbanisme",
-      features: [
-        "Tous les services du Level II",
-        "Estimation budgétaire des travaux",
-        "Aide à la stratégie foncière et patrimoniale",
-        "Dossier complet pour présentation aux services d'urbanisme",
-      ],
-      images: [
-        "/images/feasibility/level3-complete.jpg",
-        "/images/feasibility/level3-presentation.jpg",
-      ],
+      description: "Une étude de faisabilité complète pour une présentation aux services de l'urbanisme",
+      features: ["Tous les services du Level II", "Estimation budgétaire des travaux", "Aide à la stratégie foncière et patrimoniale", "Dossier complet pour présentation aux services d'urbanisme"],
+      images: ["/images/feasibility/level3-complete.jpg", "/images/feasibility/level3-presentation.jpg"],
     },
   ];
 
@@ -97,46 +57,23 @@ export default function FeasibilityStudySection() {
       <div className="max-w-6xl mx-auto">
         {isInView && (
           <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
               <h2 className="font-norwester text-4xl md:text-5xl text-center mb-6 text-gold-gradient">
-                <AnimatedText
-                  text="COMMENCER UNE ÉTUDE DE FAISABILITÉ"
-                  className="flex flex-wrap justify-center"
-                />
+                <AnimatedText text="COMMENCER UNE ÉTUDE DE FAISABILITÉ" className="flex flex-wrap justify-center" />
               </h2>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1 }}
-            >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 1 }}>
               <p className="text-center text-gray-300 mb-16 max-w-3xl mx-auto">
-                <AnimatedText
-                  text="Travailler avec un architecte c'est une question de relation, car lorsque les études de faisabilité amènent un projet jusqu'au bout, cela nous embarque ensemble pour plusieurs mois d'une étroite collaboration."
-                  className="flex flex-wrap justify-center"
-                  delay={1}
-                />
+                <AnimatedText text="Travailler avec un architecte c'est une question de relation, car lorsque les études de faisabilité amènent un projet jusqu'au bout, cela nous embarque ensemble pour plusieurs mois d'une étroite collaboration." className="flex flex-wrap justify-center" delay={1} />
               </p>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {feasibilityLevels.map((level, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 2 + index * 0.4 }}
-                  className="border border-gray-800 bg-white/90 overflow-hidden rounded-xl"
-                >
+                <motion.div key={index} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 2 + index * 0.4 }} className="border border-gray-800 bg-white/90 overflow-hidden rounded-xl">
                   <div className="bg-white/90 text-black p-4 text-center">
-                    <h3 className="font-norwester text-2xl mb-1">
-                      {level.name}
-                    </h3>
+                    <h3 className="font-norwester text-2xl mb-1">{level.name}</h3>
                     <div className="text-xl font-bold">{level.price}</div>
                   </div>
 
@@ -148,19 +85,13 @@ export default function FeasibilityStudySection() {
                       fill 
                       className="object-cover"
                     /> */}
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-500">
-                      Images du {level.name}
-                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center text-gray-500">Images du {level.name}</div>
                   </div>
 
                   <div className="p-4">
-                    <p className="font-norwester text-black mb-4 text-2xl">
-                      {level.description}
-                    </p>
+                    <p className="font-norwester text-black mb-4 text-2xl">{level.description}</p>
 
-                    <h4 className="font-semibold mb-2 text-[#daa520] text-xl">
-                      Inclus :
-                    </h4>
+                    <h4 className="font-semibold mb-2 text-[#daa520] text-xl">Inclus :</h4>
                     <ul className="text-sm text-black space-y-1 mb-4">
                       {level.features.map((feature, i) => (
                         <motion.li
