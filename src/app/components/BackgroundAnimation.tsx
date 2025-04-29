@@ -10,7 +10,12 @@ export default function WireframeBackground() {
     const mountElement = mountRef.current;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      70,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
     camera.position.z = 8;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -46,14 +51,20 @@ export default function WireframeBackground() {
         // Plateforme principale
         const mainPlatformGeometry = new THREE.BoxGeometry(10, 0.3, 8);
         const mainPlatformEdges = new THREE.EdgesGeometry(mainPlatformGeometry);
-        const mainPlatformLine = new THREE.LineSegments(mainPlatformEdges, structureMaterial);
+        const mainPlatformLine = new THREE.LineSegments(
+          mainPlatformEdges,
+          structureMaterial,
+        );
         mainPlatformLine.position.y = -2;
         baseGroup.add(mainPlatformLine);
 
         // Escaliers d'entrée
         const stairsGeometry = new THREE.BoxGeometry(3, 0.15, 1.5);
         const stairsEdges = new THREE.EdgesGeometry(stairsGeometry);
-        const stairsLine = new THREE.LineSegments(stairsEdges, structureMaterial);
+        const stairsLine = new THREE.LineSegments(
+          stairsEdges,
+          structureMaterial,
+        );
         stairsLine.position.set(0, -2.15, 4.75);
         baseGroup.add(stairsLine);
 
@@ -66,26 +77,40 @@ export default function WireframeBackground() {
 
         // Volume central
         const centralVolumeGeometry = new THREE.BoxGeometry(7, 2.5, 6);
-        const centralVolumeEdges = new THREE.EdgesGeometry(centralVolumeGeometry);
-        const centralVolumeLine = new THREE.LineSegments(centralVolumeEdges, structureMaterial);
+        const centralVolumeEdges = new THREE.EdgesGeometry(
+          centralVolumeGeometry,
+        );
+        const centralVolumeLine = new THREE.LineSegments(
+          centralVolumeEdges,
+          structureMaterial,
+        );
         centralVolumeLine.position.y = -0.75;
         mainGroup.add(centralVolumeLine);
 
         // Grandes baies vitrées façade avant
         const frontWindowGeometry = new THREE.BoxGeometry(6, 2, 0.1);
         const frontWindowEdges = new THREE.EdgesGeometry(frontWindowGeometry);
-        const frontWindowLine = new THREE.LineSegments(frontWindowEdges, glassMaterial);
+        const frontWindowLine = new THREE.LineSegments(
+          frontWindowEdges,
+          glassMaterial,
+        );
         frontWindowLine.position.set(0, -0.75, 3);
         mainGroup.add(frontWindowLine);
 
         // Baies vitrées latérales
         const sideWindowGeometry = new THREE.BoxGeometry(0.1, 2, 5);
         const sideWindowEdges = new THREE.EdgesGeometry(sideWindowGeometry);
-        const leftSideWindowLine = new THREE.LineSegments(sideWindowEdges, glassMaterial);
+        const leftSideWindowLine = new THREE.LineSegments(
+          sideWindowEdges,
+          glassMaterial,
+        );
         leftSideWindowLine.position.set(-3.5, -0.75, 0);
         mainGroup.add(leftSideWindowLine);
 
-        const rightSideWindowLine = new THREE.LineSegments(sideWindowEdges.clone(), glassMaterial);
+        const rightSideWindowLine = new THREE.LineSegments(
+          sideWindowEdges.clone(),
+          glassMaterial,
+        );
         rightSideWindowLine.position.set(3.5, -0.75, 0);
         mainGroup.add(rightSideWindowLine);
 
@@ -99,21 +124,30 @@ export default function WireframeBackground() {
         // Volume principal décalé
         const upperVolumeGeometry = new THREE.BoxGeometry(8, 2, 5);
         const upperVolumeEdges = new THREE.EdgesGeometry(upperVolumeGeometry);
-        const upperVolumeLine = new THREE.LineSegments(upperVolumeEdges, structureMaterial);
+        const upperVolumeLine = new THREE.LineSegments(
+          upperVolumeEdges,
+          structureMaterial,
+        );
         upperVolumeLine.position.set(1, 1, -0.5);
         upperGroup.add(upperVolumeLine);
 
         // Grandes baies vitrées
         const upperWindowGeometry = new THREE.BoxGeometry(7, 1.5, 0.1);
         const upperWindowEdges = new THREE.EdgesGeometry(upperWindowGeometry);
-        const upperWindowLine = new THREE.LineSegments(upperWindowEdges, glassMaterial);
+        const upperWindowLine = new THREE.LineSegments(
+          upperWindowEdges,
+          glassMaterial,
+        );
         upperWindowLine.position.set(1, 1, 2);
         upperGroup.add(upperWindowLine);
 
         // Fenêtres arrière
         const backWindowGeometry = new THREE.BoxGeometry(7, 1.5, 0.1);
         const backWindowEdges = new THREE.EdgesGeometry(backWindowGeometry);
-        const backWindowLine = new THREE.LineSegments(backWindowEdges, glassMaterial);
+        const backWindowLine = new THREE.LineSegments(
+          backWindowEdges,
+          glassMaterial,
+        );
         backWindowLine.position.set(1, 1, -3);
         upperGroup.add(backWindowLine);
 
@@ -127,7 +161,10 @@ export default function WireframeBackground() {
         // Volume principal en porte-à-faux
         const cantileveredGeometry = new THREE.BoxGeometry(4, 2, 3);
         const cantileveredEdges = new THREE.EdgesGeometry(cantileveredGeometry);
-        const cantileveredLine = new THREE.LineSegments(cantileveredEdges, structureMaterial);
+        const cantileveredLine = new THREE.LineSegments(
+          cantileveredEdges,
+          structureMaterial,
+        );
         cantileveredLine.position.set(-3, 1, 1.5);
         cantileveredGroup.add(cantileveredLine);
 
@@ -141,7 +178,10 @@ export default function WireframeBackground() {
         // Fenêtre latérale
         const sideWindowGeometry = new THREE.BoxGeometry(0.1, 1.5, 2.5);
         const sideWindowEdges = new THREE.EdgesGeometry(sideWindowGeometry);
-        const sideWindowLine = new THREE.LineSegments(sideWindowEdges, glassMaterial);
+        const sideWindowLine = new THREE.LineSegments(
+          sideWindowEdges,
+          glassMaterial,
+        );
         sideWindowLine.position.set(-5, 1, 1.5);
         cantileveredGroup.add(sideWindowLine);
 
@@ -155,15 +195,26 @@ export default function WireframeBackground() {
         // Dalle de toit principale
         const mainRoofGeometry = new THREE.BoxGeometry(8, 0.2, 5);
         const mainRoofEdges = new THREE.EdgesGeometry(mainRoofGeometry);
-        const mainRoofLine = new THREE.LineSegments(mainRoofEdges, structureMaterial);
+        const mainRoofLine = new THREE.LineSegments(
+          mainRoofEdges,
+          structureMaterial,
+        );
         mainRoofLine.position.set(1, 2.1, -0.5);
         roofGroup.add(mainRoofLine);
 
         // Garde-corps toit
-        const createRailing = (width: number, depth: number, x: number, z: number) => {
+        const createRailing = (
+          width: number,
+          depth: number,
+          x: number,
+          z: number,
+        ) => {
           const railingGeometry = new THREE.BoxGeometry(width, 0.8, depth);
           const railingEdges = new THREE.EdgesGeometry(railingGeometry);
-          const railingLine = new THREE.LineSegments(railingEdges, structureMaterial);
+          const railingLine = new THREE.LineSegments(
+            railingEdges,
+            structureMaterial,
+          );
           railingLine.position.set(x, 2.5, z);
           railingLine.scale.set(1, 0.1, 0.1);
           return railingLine;
@@ -186,7 +237,10 @@ export default function WireframeBackground() {
         const createColumn = (x: number, z: number) => {
           const columnGeometry = new THREE.BoxGeometry(0.3, 2, 0.3);
           const columnEdges = new THREE.EdgesGeometry(columnGeometry);
-          const columnLine = new THREE.LineSegments(columnEdges, structureMaterial);
+          const columnLine = new THREE.LineSegments(
+            columnEdges,
+            structureMaterial,
+          );
           columnLine.position.set(x, -1, z);
           return columnLine;
         };
@@ -197,7 +251,10 @@ export default function WireframeBackground() {
         // Pergola sur le toit
         const pergolaBaseGeometry = new THREE.BoxGeometry(4, 0.1, 3);
         const pergolaBaseEdges = new THREE.EdgesGeometry(pergolaBaseGeometry);
-        const pergolaBaseLine = new THREE.LineSegments(pergolaBaseEdges, structureMaterial);
+        const pergolaBaseLine = new THREE.LineSegments(
+          pergolaBaseEdges,
+          structureMaterial,
+        );
         pergolaBaseLine.position.set(2, 2.2, -1);
         detailsGroup.add(pergolaBaseLine);
 
@@ -205,7 +262,10 @@ export default function WireframeBackground() {
         for (let i = 0; i < 5; i++) {
           const latteGeometry = new THREE.BoxGeometry(4, 0.05, 0.1);
           const latteEdges = new THREE.EdgesGeometry(latteGeometry);
-          const latteLine = new THREE.LineSegments(latteEdges, structureMaterial);
+          const latteLine = new THREE.LineSegments(
+            latteEdges,
+            structureMaterial,
+          );
           latteLine.position.set(2, 2.3, -2 + i * 0.8);
           detailsGroup.add(latteLine);
         }
@@ -240,9 +300,22 @@ export default function WireframeBackground() {
     // Créer des triangles individuels
     for (let i = 0; i < positions.length; i += 9) {
       const triangleGeometry = new THREE.BufferGeometry();
-      const vertices = new Float32Array([positions[i], positions[i + 1], positions[i + 2], positions[i + 3], positions[i + 4], positions[i + 5], positions[i + 6], positions[i + 7], positions[i + 8]]);
+      const vertices = new Float32Array([
+        positions[i],
+        positions[i + 1],
+        positions[i + 2],
+        positions[i + 3],
+        positions[i + 4],
+        positions[i + 5],
+        positions[i + 6],
+        positions[i + 7],
+        positions[i + 8],
+      ]);
 
-      triangleGeometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
+      triangleGeometry.setAttribute(
+        "position",
+        new THREE.BufferAttribute(vertices, 3),
+      );
 
       const material = new THREE.MeshBasicMaterial({
         color: 0x766f64,
@@ -263,7 +336,11 @@ export default function WireframeBackground() {
       triangle.userData = {
         originalPosition: new THREE.Vector3(0, 0, 0),
         center: new THREE.Vector3(centerX, centerY, centerZ),
-        direction: new THREE.Vector3(centerX * (Math.random() * 0.5 + 0.5), centerY * (Math.random() * 0.5 + 0.5), centerZ * (Math.random() * 0.5 + 0.5)).normalize(),
+        direction: new THREE.Vector3(
+          centerX * (Math.random() * 0.5 + 0.5),
+          centerY * (Math.random() * 0.5 + 0.5),
+          centerZ * (Math.random() * 0.5 + 0.5),
+        ).normalize(),
       };
 
       triangles.push(triangle);
@@ -304,47 +381,82 @@ export default function WireframeBackground() {
       if (valuesSection) {
         // Calculer le point de déclenchement au milieu de la section Values
         const valuesSectionRect = valuesSection.getBoundingClientRect();
-        const valuesSectionMiddle = valuesSectionRect.top + valuesSectionRect.height / 1.5;
-        valuesTriggerPoint = window.scrollY + valuesSectionMiddle - window.innerHeight / 1.5;
+        const valuesSectionMiddle =
+          valuesSectionRect.top + valuesSectionRect.height / 1.5;
+        valuesTriggerPoint =
+          window.scrollY + valuesSectionMiddle - window.innerHeight / 1.5;
       }
 
       if (projetSection) {
         // Calculer le point de déclenchement au début de la section Projet
         const projetSectionRect = projetSection.getBoundingClientRect();
-        projetTriggerPoint = window.scrollY + projetSectionRect.top - window.innerHeight / 0.8;
+        projetTriggerPoint =
+          window.scrollY + projetSectionRect.top - window.innerHeight / 0.8;
       }
 
       if (footerSection) {
         // Calculer le point de déclenchement au début du footer
         const footerSectionRect = footerSection.getBoundingClientRect();
-        footerTriggerPoint = window.scrollY + footerSectionRect.top - window.innerHeight / 0.8;
+        footerTriggerPoint =
+          window.scrollY + footerSectionRect.top - window.innerHeight / 0.8;
       }
 
       // Calculer le facteur d'éclatement basé sur le scroll
       const scrollPosition = window.scrollY;
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
 
       // Normaliser la progression du scroll pour l'éclatement (de Values jusqu'à Projet)
       const scrollOffset = 0.06;
-      const scrollProgress = Math.max(0, Math.min(1, ((scrollPosition - valuesTriggerPoint) / (projetTriggerPoint - valuesTriggerPoint) - scrollOffset) / (1 - scrollOffset)));
+      const scrollProgress = Math.max(
+        0,
+        Math.min(
+          1,
+          ((scrollPosition - valuesTriggerPoint) /
+            (projetTriggerPoint - valuesTriggerPoint) -
+            scrollOffset) /
+            (1 - scrollOffset),
+        ),
+      );
 
       // Calculer le facteur de fade out des triangles (à partir de la section Projet)
-      const fadeOutProgress = Math.max(0, Math.min(1, ((scrollPosition - projetTriggerPoint) / (footerTriggerPoint - projetTriggerPoint)) * 2));
+      const fadeOutProgress = Math.max(
+        0,
+        Math.min(
+          1,
+          ((scrollPosition - projetTriggerPoint) /
+            (footerTriggerPoint - projetTriggerPoint)) *
+            2,
+        ),
+      );
 
       // Calculer le facteur d'apparition de la maison (synchronisé avec le fade out des triangles)
       const houseVisibilityProgress = fadeOutProgress;
 
       // Calculer le facteur de rotation de la maison (à partir du footer)
-      const rotationProgress = Math.max(0, Math.min(1, (scrollPosition - footerTriggerPoint) / (documentHeight - footerTriggerPoint)));
+      const rotationProgress = Math.max(
+        0,
+        Math.min(
+          1,
+          (scrollPosition - footerTriggerPoint) /
+            (documentHeight - footerTriggerPoint),
+        ),
+      );
 
       // Définir les valeurs cibles en fonction de la direction du défilement
-      let targetExplosion, targetTriangleFadeOut, targetHouseVisibility, targetRotation;
+      let targetExplosion,
+        targetTriangleFadeOut,
+        targetHouseVisibility,
+        targetRotation;
 
       if (scrollingDown) {
         // Défilement vers le bas - progression normale
         targetExplosion = Math.max(0, Math.min(1, scrollProgress * 0.8));
         targetTriangleFadeOut = Math.max(0, Math.min(1, fadeOutProgress));
-        targetHouseVisibility = Math.max(0, Math.min(1, houseVisibilityProgress));
+        targetHouseVisibility = Math.max(
+          0,
+          Math.min(1, houseVisibilityProgress),
+        );
         targetRotation = Math.max(0, Math.min(1, rotationProgress * 2));
       } else {
         // Défilement vers le haut - recomposition de la sphère et disparition de la maison
@@ -357,7 +469,10 @@ export default function WireframeBackground() {
           // Après la section Projet - maintenir l'état actuel des triangles mais ajuster la maison
           targetExplosion = explosionFactor;
           targetTriangleFadeOut = Math.max(0, Math.min(1, fadeOutProgress));
-          targetHouseVisibility = Math.max(0, Math.min(1, houseVisibilityProgress));
+          targetHouseVisibility = Math.max(
+            0,
+            Math.min(1, houseVisibilityProgress),
+          );
         }
         targetRotation = Math.max(0, Math.min(1, rotationProgress * 2));
       }
@@ -368,10 +483,14 @@ export default function WireframeBackground() {
       const houseTransitionSpeed = 0.03;
       const rotationTransitionSpeed = 0.01; // Transition très douce pour la rotation
 
-      explosionFactor += (targetExplosion - explosionFactor) * explosionTransitionSpeed;
-      triangleFadeOutFactor += (targetTriangleFadeOut - triangleFadeOutFactor) * fadeTransitionSpeed;
-      houseVisibilityFactor += (targetHouseVisibility - houseVisibilityFactor) * houseTransitionSpeed;
-      houseRotationFactor += (targetRotation - houseRotationFactor) * rotationTransitionSpeed;
+      explosionFactor +=
+        (targetExplosion - explosionFactor) * explosionTransitionSpeed;
+      triangleFadeOutFactor +=
+        (targetTriangleFadeOut - triangleFadeOutFactor) * fadeTransitionSpeed;
+      houseVisibilityFactor +=
+        (targetHouseVisibility - houseVisibilityFactor) * houseTransitionSpeed;
+      houseRotationFactor +=
+        (targetRotation - houseRotationFactor) * rotationTransitionSpeed;
 
       // Mettre à jour la visibilité et la position de la maison
       modernHouse.visible = houseVisibilityFactor > 0.01;
@@ -400,7 +519,10 @@ export default function WireframeBackground() {
         triangle.position.z = direction.z * explosionFactor * explosionDistance;
 
         // Ajuster l'opacité en fonction du fade out
-        (triangle.material as THREE.MeshBasicMaterial).opacity = Math.max(0, 0.4 * (1 - triangleFadeOutFactor));
+        (triangle.material as THREE.MeshBasicMaterial).opacity = Math.max(
+          0,
+          0.4 * (1 - triangleFadeOutFactor),
+        );
 
         // Faire tourner chaque triangle individuellement
         triangle.rotation.x += 0.001;
