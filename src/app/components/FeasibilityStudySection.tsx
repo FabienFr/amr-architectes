@@ -13,8 +13,8 @@ const AnimatedText = ({ text, className, delay = 0 }: { text: string; className:
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            duration: 0.05,
-            delay: delay + index * 0.02,
+            duration: 0.02,
+            delay: delay + index * 0.01,
           }}
         >
           {char === " " ? "\u00A0" : char}
@@ -63,15 +63,15 @@ export default function FeasibilityStudySection() {
               </h2>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 1 }}>
-              <p className="text-center text-gray-300 mb-16 max-w-3xl mx-auto">
-                <AnimatedText text="Travailler avec un architecte c'est une question de relation, car lorsque les études de faisabilité amènent un projet jusqu'au bout, cela nous embarque ensemble pour plusieurs mois d'une étroite collaboration." className="flex flex-wrap justify-center" delay={1} />
-              </p>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2, delay: 0.7 }}>
+              <div className="text-center text-gray-300 mb-16 max-w-3xl mx-auto">
+                <AnimatedText text="Travailler avec un architecte c'est une question de relation, car lorsque les études de faisabilité amènent un projet jusqu'au bout, cela nous embarque ensemble pour plusieurs mois d'une étroite collaboration." className="flex flex-wrap justify-center" delay={0.5} />
+              </div>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {feasibilityLevels.map((level, index) => (
-                <motion.div key={index} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 2 + index * 0.4 }} className="border border-gray-800 bg-white/90 overflow-hidden rounded-xl">
+                <motion.div key={index} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 1.5 + index * 0.4 }} className="border border-gray-800 bg-white/90 overflow-hidden rounded-xl">
                   <div className="bg-white/90 text-black p-4 text-center">
                     <h3 className="font-norwester text-2xl mb-1">{level.name}</h3>
                     <div className="text-xl font-bold">{level.price}</div>

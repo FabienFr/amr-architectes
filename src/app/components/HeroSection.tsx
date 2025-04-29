@@ -44,7 +44,7 @@ export default function HeroSection() {
   > = {
     default: {
       image: "/images/hero.jpg",
-      title: "Imaginons l’espace qui vous ressemble.",
+      title: "Imaginons l’espace qui vous ressemble",
       textColor: "text-black",
       path: "/",
       enabled: true,
@@ -153,7 +153,7 @@ export default function HeroSection() {
                 y: activeImage === key ? 0 : 30,
               }}
               transition={{ duration: 0.7 }}
-              className={`font-norwester text-5xl md:text-7xl font-extrabold leading-tight tracking-wider absolute inset-0 flex items-center justify-center ${heroContent[key].textColor}`}
+              className={`font-norwester text-4xl md:text-6xl font-extrabold leading-tight tracking-wider absolute inset-0 flex items-center justify-center ${heroContent[key].textColor}`}
             >
               {heroContent[key].title}
             </motion.h1>
@@ -164,7 +164,7 @@ export default function HeroSection() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-black text-white hover:text-black border-black border-2 hover:bg-gray-200/60 transition px-8 py-4 w-full sm:w-40 rounded-lg text-lg font-semibold"
+            className="bg-black text-white hover:text-black border-black border-2 hover:bg-gray-200/60 transition mx-auto sm:mx-8 py-4 w-48 sm:w-40 rounded-lg text-lg font-semibold"
             onMouseEnter={() => handleMouseEnter("construire")}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleButtonClick("construire")}
@@ -175,7 +175,7 @@ export default function HeroSection() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-black text-white hover:text-black border-black border-2 hover:bg-gray-200/60 transition mx-8 py-4 w-full sm:w-40 rounded-lg text-lg font-semibold"
+            className="bg-black text-white hover:text-black border-black border-2 hover:bg-gray-200/60 transition mx-auto sm:mx-8 py-4 w-48 sm:w-40 rounded-lg text-lg font-semibold"
             onMouseEnter={() => handleMouseEnter("agrandir")}
             onMouseLeave={handleMouseLeave}
             onClick={() => handleButtonClick("agrandir")}
