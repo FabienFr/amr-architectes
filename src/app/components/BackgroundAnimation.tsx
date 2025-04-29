@@ -10,12 +10,7 @@ export default function WireframeBackground() {
     const mountElement = mountRef.current;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      70,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000,
-    );
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 8;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -33,25 +28,12 @@ export default function WireframeBackground() {
     // Créer des triangles individuels
     for (let i = 0; i < positions.length; i += 9) {
       const triangleGeometry = new THREE.BufferGeometry();
-      const vertices = new Float32Array([
-        positions[i],
-        positions[i + 1],
-        positions[i + 2],
-        positions[i + 3],
-        positions[i + 4],
-        positions[i + 5],
-        positions[i + 6],
-        positions[i + 7],
-        positions[i + 8],
-      ]);
+      const vertices = new Float32Array([positions[i], positions[i + 1], positions[i + 2], positions[i + 3], positions[i + 4], positions[i + 5], positions[i + 6], positions[i + 7], positions[i + 8]]);
 
-      triangleGeometry.setAttribute(
-        "position",
-        new THREE.BufferAttribute(vertices, 3),
-      );
+      triangleGeometry.setAttribute("position", new THREE.BufferAttribute(vertices, 3));
 
       const material = new THREE.MeshBasicMaterial({
-        color: 0xbf911c,
+        color: 0x766f64,
         wireframe: true,
         transparent: true,
         opacity: 0.4,
@@ -69,11 +51,7 @@ export default function WireframeBackground() {
       triangle.userData = {
         originalPosition: new THREE.Vector3(0, 0, 0),
         center: new THREE.Vector3(centerX, centerY, centerZ),
-        direction: new THREE.Vector3(
-          centerX * (Math.random() * 0.5 + 0.5),
-          centerY * (Math.random() * 0.5 + 0.5),
-          centerZ * (Math.random() * 0.5 + 0.5),
-        ).normalize(),
+        direction: new THREE.Vector3(centerX * (Math.random() * 0.5 + 0.5), centerY * (Math.random() * 0.5 + 0.5), centerZ * (Math.random() * 0.5 + 0.5)).normalize(),
       };
 
       triangles.push(triangle);
@@ -95,29 +73,19 @@ export default function WireframeBackground() {
       if (valuesSection) {
         // Calculer le point de déclenchement au milieu de la section Values
         const valuesSectionRect = valuesSection.getBoundingClientRect();
-        const valuesSectionMiddle =
-          valuesSectionRect.top + valuesSectionRect.height / 1.5;
-        scrollTriggerPoint =
-          window.scrollY + valuesSectionMiddle - window.innerHeight / 1.5;
+        const valuesSectionMiddle = valuesSectionRect.top + valuesSectionRect.height / 1.5;
+        scrollTriggerPoint = window.scrollY + valuesSectionMiddle - window.innerHeight / 1.5;
       }
 
       // Calculer le facteur d'éclatement basé sur le scroll par rapport au point de déclenchement
       const scrollPosition = window.scrollY;
-      const documentHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
 
       // Normaliser la progression du scroll à partir du point de déclenchement
       // 0 = avant le point de déclenchement, 1 = fin de la page
-      const scrollProgress = Math.max(
-        0,
-        Math.min(
-          1,
-          (scrollPosition - scrollTriggerPoint) /
-            (documentHeight - scrollTriggerPoint),
-        ),
-      );
+      const scrollProgress = Math.max(0, Math.min(1, (scrollPosition - scrollTriggerPoint) / (documentHeight - scrollTriggerPoint)));
 
-      const targetExplosion = Math.max(0, Math.min(1, scrollProgress * 0.8)); // Multiplier pour accélérer l'effet
+      const targetExplosion = Math.max(0, Math.min(1, scrollProgress * 0.6)); // Multiplier pour accélérer l'effet
 
       // Transition douce avec une vitesse différente selon la direction du scroll
       // Plus rapide pour recomposer (scroll up) que pour exploser (scroll down)
@@ -171,5 +139,5 @@ export default function WireframeBackground() {
     };
   }, []);
 
-  return <div ref={mountRef} className="fixed inset-0 -z-10" />;
+  return <div ref={mountRef} className="fixed inset-0 -z-10 opacity-90" />;
 }
