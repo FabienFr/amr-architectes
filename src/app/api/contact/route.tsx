@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       message,
       attachments,
       siteName: "AMR Architectes",
-      notifyTo: "fabien@xaeos.com",
+      notifyTo: "michael@amr-architectes.com",
     });
 
     return NextResponse.json({ success: true });
